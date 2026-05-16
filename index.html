@@ -17,12 +17,25 @@
             --bg-light: #f8fafc;
             --text-main: #334155;
             --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --timeline-line: #e2e8f0;
+        }
+
+        /* Dark Mode Theme Variables */
+        [data-theme="dark"] {
+            --bg-light: #0f172a;
+            --text-main: #cbd5e1;
+            --card-bg: #1e293b;
+            --secondary: #f8fafc;
+            --border-color: #334155;
+            --timeline-line: #334155;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
@@ -39,7 +52,7 @@
             padding: 60px 0;
         }
 
-        /* NAVBAR */
+        /* NAVBAR & CONTROLS */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -47,6 +60,11 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(5px);
+        }
+        
+        [data-theme="dark"] header {
+            background-color: rgba(30, 41, 59, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .navbar {
@@ -67,6 +85,12 @@
             color: var(--primary);
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -85,9 +109,36 @@
             color: var(--primary);
         }
 
+        /* Toolbar Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: var(--card-bg);
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #fff;
             padding: 80px 0;
             text-align: center;
@@ -110,6 +161,7 @@
             font-weight: 700;
             margin-bottom: 10px;
             letter-spacing: 1px;
+            color: #ffffff;
         }
 
         .hero-content h2 {
@@ -150,7 +202,7 @@
             transform: translateY(-2px);
         }
 
-        /* SECTION TILES */
+        /* SECTION TITLES */
         .section-title {
             text-align: center;
             font-size: 32px;
@@ -168,6 +220,25 @@
             margin: 10px auto 0 auto;
         }
 
+        /* ABOUT SECTION PROFILE CARD */
+        .profile-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 17px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
         /* SKILLS SECTION */
         .skills-grid {
             display: grid;
@@ -181,9 +252,9 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             font-weight: 600;
-            transition: transform 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .skill-card:hover {
@@ -210,19 +281,20 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid var(--border-color);
         }
 
         .timeline-box h3 {
             margin-bottom: 20px;
             color: var(--secondary);
-            border-bottom: 2px solid #f1f5f9;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
         }
 
         .timeline-item {
             position: relative;
             padding-left: 25px;
-            border-left: 2px solid #e2e8f0;
+            border-left: 2px solid var(--timeline-line);
             margin-bottom: 25px;
         }
 
@@ -260,6 +332,10 @@
             margin-bottom: 8px;
         }
 
+        [data-theme="dark"] .institution {
+            color: #94a3b8;
+        }
+
         /* CERTIFICATE IMAGE STYLE */
         .cert-img {
             display: block;
@@ -268,7 +344,7 @@
             height: auto;
             border-radius: 6px;
             margin-top: 10px;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--border-color);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             transition: transform 0.3s;
         }
@@ -279,11 +355,16 @@
 
         /* CONTACT SECTION */
         .contact-card {
-            background: var(--secondary);
+            background: #1e293b;
             color: #fff;
             padding: 40px;
             border-radius: 8px;
             text-align: center;
+        }
+        
+        [data-theme="dark"] .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
         }
 
         .contact-card h2 {
@@ -301,6 +382,7 @@
 
         .contact-item {
             font-size: 18px;
+            color: #fff;
         }
 
         .contact-item i {
@@ -318,8 +400,14 @@
             border-top: 1px solid #1e293b;
         }
 
+        /* Language visibility rules */
+        [data-lang="en"] .lang-lo { display: none !important; }
+        [data-lang="lo"] .lang-en { display: none !important; }
+
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 15px; }
+            .nav-right { flex-direction: column; gap: 15px; width: 100%; }
+            .nav-links { flex-direction: column; align-items: center; gap: 10px; }
             .hero-content h1 { font-size: 32px; }
             .timeline-container { grid-template-columns: 1fr; }
             .contact-grid { flex-direction: column; gap: 15px; }
@@ -327,59 +415,99 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="light" data-lang="lo">
 
     <!-- NAVBAR -->
     <header>
         <nav class="navbar">
             <a href="#" class="logo">Phouthasin<span>.CV</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">ກ່ຽວກັບ</a></li>
-                <li><a href="#skills">ທັກສະ</a></li>
-                <li><a href="#resume">ປະຫວັດການຮຽນ-ການເຮັດວຽກ</a></li>
-                <li><a href="#contact">ຕິດຕໍ່</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#about"><span class="lang-lo">ກ່ຽວກັບ</span><span class="lang-en">About</span></a></li>
+                    <li><a href="#skills"><span class="lang-lo">ທັກສະ</span><span class="lang-en">Skills</span></a></li>
+                    <li><a href="#resume"><span class="lang-lo">ປະຫວັດສ່ວນຕົວ</span><span class="lang-en">Resume</span></a></li>
+                    <li><a href="#contact"><span class="lang-lo">ຕິດຕໍ່</span><span class="lang-en">Contact</span></a></li>
+                </ul>
+                
+                <!-- Theme and Language Switches -->
+                <div class="controls">
+                    <button class="control-btn" id="theme-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                        <span id="theme-text" class="lang-lo">ໂໝດກາງຄືນ</span>
+                        <span id="theme-text-en" class="lang-en">Dark Mode</span>
+                    </button>
+                    <button class="control-btn" id="lang-toggle">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>EN / LO</span>
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <!-- ບ່ອນສະແດງຮູບພາບໂປຣໄຟລ໌ຂອງທ່ານ (ດຶງໄຟລ໌ profile.jpg) -->
-            <img src="img/Gemini_Generated_Image_g62gizg62gizg62g.png" alt="Phouthasin Phanthavong" class="hero-avatar">
+            <!-- ບ່ອນສະແດງຮູບພາບໂປຣໄຟລ໌ຂອງທ່ານ -->
+            <img src="profile.jpg" alt="Phouthasin Phanthavong" class="hero-avatar">
             <h1>Phouthasin Phanthavong</h1>
-            <h2>Finance & IT Professional</h2>
+            <h2 class="lang-lo">ຜູ້ຊ່ຽວຊານດ້ານການເງິນ & ໄອທີ</h2>
+            <h2 class="lang-en">Finance & IT Professional</h2>
+            
             <div class="hero-meta">
                 <span><i class="fa-solid fa-cake-candles"></i> 14th April 2001</span>
                 <span><i class="fa-solid fa-location-dot"></i> Vientiane, Laos</span>
-                <span><i class="fa-solid fa-user"></i> Nickname: Joekky</span>
+                <span><i class="fa-solid fa-user"></i> <span class="lang-lo">ຊື່ຫຼິ້ນ: ຈອ໋ກກີ່</span><span class="lang-en">Nickname: Joekky</span></span>
             </div>
-            <a href="#contact" class="btn">Contact Me</a>
+            <a href="#contact" class="btn"><span class="lang-lo">ຕິດຕໍ່ຂ້າພະເຈົ້າ</span><span class="lang-en">Contact Me</span></a>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about" class="container">
-        <h2 class="section-title">ຂໍ້ມູນສ່ວນຕົວ (Profile Info)</h2>
-        <div style="background: white; padding: 30px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 17px; max-width: 800px; margin: 0 auto;">
-            <p style="margin-bottom: 15px; text-align: center; font-weight: 600; color: var(--secondary);">
-                ສະບາຍດີ! ຂ້າພະເຈົ້າ ພຸດທະສີນ ພັນທະວົງ (ຈອ໋ກກີ່). ເປັນຜູ້ທີ່ມີຄວາມຮູ້ ແລະ ທັກສະທັງໃນຂະແໜງການເງິນ ແລະ ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານ (IT). ມີຄວາມມຸ່ງໝັ້ນໃນການພັດທະນາເວັບໄຊ ແລະ นຳໃຊ້ລະບົບໄອທີເຂົ້າໃນການບໍລິຫານຈັດການ.
+        <h2 class="section-title">
+            <span class="lang-lo">ຂໍ້ມູນສ່ວນຕົວ</span>
+            <span class="lang-en">Profile Info</span>
+        </h2>
+        <div class="profile-card">
+            <p style="margin-bottom: 15px; text-align: center; font-weight: 600; color: var(--primary);">
+                <span class="lang-lo">ສະບາຍດີ! ຂ້າພະເຈົ້າ ພຸດທະສີນ ພັນທະວົງ (ຈອ໋ກກີ່). ເປັນຜູ້ທີ່ມີຄວາມຮູ້ ແລະ ທັກສະທັງໃນຂະແໜງການເງິນ ແລະ ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານ (IT). ມີຄວາມມຸ່ງໝັ້ນໃນການພັດທະນາເວັບໄຊ ແລະ ນຳໃຊ້ລະບົບໄອທີເຂົ້າໃນການບໍລິຫານຈັດການ.</span>
+                <span class="lang-en">Hello! I am Phouthasin Phanthavong (Joekky). A professional skilled in both Finance and Information Technology (IT). Passionate about web development and implementing IT solutions in management systems.</span>
             </p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; font-size: 15px;">
-                <div><strong>ເພດ:</strong> ຊາຍ (Male)</div>
-                <div><strong>ສັນຊາດ:</strong> ລາວ (Lao)</div>
-                <div><strong>ສຸຂະພາບ:</strong> ສົມບູນແຂງແຮງດີ (Good)</div>
-                <div><strong>ສາສະໜາ:</strong> ພຸດ (Buddhism)</div>
-                <div><strong>ສ່ວນສູງ:</strong> 188 cm</div>
-                <div><strong>ນ້ຳໜັກ:</strong> 65 kg</div>
+            <div class="profile-grid">
+                <div>
+                    <strong><span class="lang-lo">ເພດ:</span><span class="lang-en">Gender:</span></strong> 
+                    <span class="lang-lo">ຊາຍ</span><span class="lang-en">Male</span>
+                </div>
+                <div>
+                    <strong><span class="lang-lo">ສັນຊາດ:</span><span class="lang-en">Nationality:</span></strong> 
+                    <span class="lang-lo">ລາວ</span><span class="lang-en">Lao</span>
+                </div>
+                <div>
+                    <strong><span class="lang-lo">ສຸຂະພາບ:</span><span class="lang-en">Health:</span></strong> 
+                    <span class="lang-lo">ສົມບູນແຂງແຮງດີ</span><span class="lang-en">Good</span>
+                </div>
+                <div>
+                    <strong><span class="lang-lo">ສາສະໜາ:</span><span class="lang-en">Religion:</span></strong> 
+                    <span class="lang-lo">ພຸດ</span><span class="lang-en">Buddhism</span>
+                </div>
+                <div>
+                    <strong><span class="lang-lo">ສ່ວນສູງ:</span><span class="lang-en">Height:</span></strong> 188 cm
+                </div>
+                <div>
+                    <strong><span class="lang-lo">ນ້ຳໜັກ:</span><span class="lang-en">Weight:</span></strong> 65 kg
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SKILLS SECTION -->
-    <section id="skills" style="background-color: #f1f5f9;">
+    <section id="skills" style="background-color: rgba(37, 99, 235, 0.05);">
         <div class="container">
-            <h2 class="section-title">ທັກສະຄວາມສາມາດ (My Skills)</h2>
+            <h2 class="section-title">
+                <span class="lang-lo">ທັກສະຄວາມສາມາດ</span>
+                <span class="lang-en">My Skills</span>
+            </h2>
             <div class="skills-grid">
                 <div class="skill-card"><i class="fa-brands fa-html5" style="color: #ea580c;"></i>HTML</div>
                 <div class="skill-card"><i class="fa-brands fa-css3-alt" style="color: #0284c7;"></i>CSS</div>
@@ -392,61 +520,76 @@
             </div>
             
             <div style="margin-top: 30px; text-align: center; font-weight: 600;">
-                <p>🗣️ ພາສາ (Languages): <span>Lao (Native)</span> | <span>Thai (Fluent)</span> | <span>English (Professional)</span></p>
+                <p>
+                    🗣️ <span class="lang-lo">ພາສາ: </span><span class="lang-en">Languages: </span>
+                    <span>Lao (Native)</span> | <span>Thai (Fluent)</span> | <span>English (Professional)</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- RESUME SECTION (EDUCATION & EXPERIENCE) -->
     <section id="resume" class="container">
-        <h2 class="section-title">ປະຫວັດການຮຽນ & ການເຮັດວຽກ</h2>
+        <h2 class="section-title">
+            <span class="lang-lo">ປະຫວັດການຮຽນ & ການເຮັດວຽກ</span>
+            <span class="lang-en">Education & Experience</span>
+        </h2>
         <div class="timeline-container">
             
             <!-- Education -->
             <div class="timeline-box">
-                <h3><i class="fa-solid fa-graduation-cap"></i> ປະຫວັດການສຶກສາ</h3>
+                <h3>
+                    <i class="fa-solid fa-graduation-cap"></i> 
+                    <span class="lang-lo">ປະຫວັດການສຶກສາ</span>
+                    <span class="lang-en">Education History</span>
+                </h3>
                 
                 <div class="timeline-item">
                     <span class="time">2019 - 2023</span>
                     <h4>Bachelor Degree in Finance</h4>
                     <p class="institution">Banking Institute</p>
-                    <!-- ບ່ອນໃສ່ໃບປະກາດ/ໃບຄະແນນ ຂອງສະຖາບັນການເງິນ -->
-                    <img src="cert_finance.jpg" alt="ໃບປະກາດ Finance" class="cert-img" onerror="this.style.display='none'">
+                    <img src="cert_finance.jpg" alt="Certificate Finance" class="cert-img" onerror="this.style.display='none'">
                 </div>
                 
                 <div class="timeline-item">
                     <span class="time">2022 - 2023 (Present)</span>
                     <h4>Bachelor Degree in ICT Engineering</h4>
                     <p class="institution">Institute of Information Communication and Technology</p>
-                    <!-- ບ່ອນໃສ່ໃບປະກາດ/ໃບຄະແນນ ຂອງ ICT Engineering -->
-                    <img src="cert_ict.jpg" alt="ໃບປະກາດ ICT" class="cert-img" onerror="this.style.display='none'">
+                    <img src="cert_ict.jpg" alt="Certificate ICT" class="cert-img" onerror="this.style.display='none'">
                 </div>
 
                 <div class="timeline-item">
                     <span class="time">2018 - 2021</span>
                     <h4>Higher Diploma in Computer Science</h4>
                     <p class="institution">Soutsaka Institute of Technology</p>
-                    <!-- ບ່ອນໃສ່ໃບປະກາດ/ໃບຄະແນນ ຂອງ Soutsaka -->
-                    <img src="cert_soutsaka.jpg" alt="ໃบປະກາດ Computer Science" class="cert-img" onerror="this.style.display='none'">
+                    <img src="cert_soutsaka.jpg" alt="Certificate Computer Science" class="cert-img" onerror="this.style.display='none'">
                 </div>
             </div>
             
             <!-- Experience -->
             <div class="timeline-box">
-                <h3><i class="fa-solid fa-briefcase"></i> ປະຫວັດການເຮັດວຽກ</h3>
+                <h3>
+                    <i class="fa-solid fa-briefcase"></i> 
+                    <span class="lang-lo">ປະຫວັດການເຮັດວຽກ</span>
+                    <span class="lang-en">Work Experience</span>
+                </h3>
                 
                 <div class="timeline-item">
                     <span class="time">2023 - 2024</span>
-                    <h4>Website Developer</h4>
+                    <h4 class="lang-lo">ນັກພັດທະນາເວັບໄຊ</h4>
+                    <h4 class="lang-en">Website Developer</h4>
                     <p class="institution">Systory</p>
-                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;">ພັດທະນາ ແລະ ດູແລຮັກສາເວັບໄຊໃຫ້ກັບອົງກອນ.</p>
+                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;" class="lang-lo">ພັດທະນາ ແລະ ດູແລຮັກສາເວັບໄຊໃຫ້ກັບອົງກອນ.</p>
+                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;" class="lang-en">Developed and maintained official websites for the organization.</p>
                 </div>
                 
                 <div class="timeline-item">
                     <span class="time">2022 - 2024</span>
-                    <h4>Rider</h4>
+                    <h4 class="lang-lo">ພະນັກງານຈັດສົ່ງອາຫານ</h4>
+                    <h4 class="lang-en">Rider</h4>
                     <p class="institution">Foodpanda</p>
-                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;">ບໍລິການຈັດສົ່ງອາຫານ ແລະ ສ້າງທັກສະການຈັດການເວລາ.</p>
+                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;" class="lang-lo">ບໍລິການຈັດສົ່ງອາຫານ ແລະ ສ້າງທັກສະການຈັດການເວລາ.</p>
+                    <p style="font-size: 14px; margin-top: 5px; color: #64748b;" class="lang-en">Delivered food services while building strong time management skills.</p>
                 </div>
             </div>
 
@@ -456,8 +599,11 @@
     <!-- CONTACT SECTION -->
     <section id="contact" class="container">
         <div class="contact-card">
-            <h2>ຍິນດີຮ່ວມງານ ແລະ ຕິດຕໍ່ພົວພັນ</h2>
-            <p>ທ່ານສາມາດຕິດຕໍ່ຫາຂ້າພະເຈົ້າໄດ້ໂດຍກົງຜ່ານຊ່ອງທາງລຸ່ມນີ້:</p>
+            <h2 class="lang-lo">ຍິນດີຮ່ວມງານ ແລະ ຕິດຕໍ່ພົວພັນ</h2>
+            <h2 class="lang-en">Let's Work Together</h2>
+            <p class="lang-lo">ທ່ານສາມາດຕິດຕໍ່ຫາຂ້າພະເຈົ້າໄດ້ໂດຍກົງຜ່ານຊ່ອງທາງລຸ່ມນີ້:</p>
+            <p class="lang-en">You can directly reach out to me via the following channels:</p>
+            
             <div class="contact-grid">
                 <div class="contact-item">
                     <i class="fa-solid fa-phone"></i>
@@ -468,7 +614,11 @@
                     <span>joekky@gmail.com / joekky5599@gmail.com</span>
                 </div>
             </div>
-            <p style="margin-top: 25px; font-size: 14px; opacity: 0.7;"><i class="fa-solid fa-house"></i> ບ້ານ ສີໄຄທົ່ງ, ເມືອງ ສີໂຄດຕະບອງ, ນະຄອນຫຼວງວຽງຈັນ</p>
+            <p style="margin-top: 25px; font-size: 14px; opacity: 0.7;">
+                <i class="fa-solid fa-house"></i> 
+                <span class="lang-lo">ບ້ານ ສີໄຄທົ່ງ, ເມືອງ ສີໂຄດຕະບອງ, ນະຄອນຫຼວງວຽງຈັນ</span>
+                <span class="lang-en">Sikhai Thong Village, Sikhottabong District, Vientiane Capital</span>
+            </p>
         </div>
     </section>
 
@@ -477,5 +627,41 @@
         <p>&copy; 2026 Phouthasin Phanthavong. All Rights Reserved.</p>
     </footer>
 
+    <!-- JAVASCRIPT FOR TOGGLES -->
+    <script>
+        // Elements
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const langToggle = document.getElementById('lang-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const themeTextLo = document.getElementById('theme-text');
+        const themeTextEn = document.getElementById('theme-text-en');
+
+        // Theme Toggle Function Logic
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeTextLo.textContent = 'ໂໝດກາງເວັນ';
+                themeTextEn.textContent = 'Light Mode';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeTextLo.textContent = 'ໂໝດກາງຄືນ';
+                themeTextEn.textContent = 'Dark Mode';
+            }
+        });
+
+        // Language Toggle Function Logic
+        langToggle.addEventListener('click', () => {
+            const currentLang = body.getAttribute('data-lang');
+            if (currentLang === 'lo') {
+                body.setAttribute('data-lang', 'en');
+            } else {
+                body.setAttribute('data-lang', 'lo');
+            }
+        });
+    </script>
 </body>
 </html>
